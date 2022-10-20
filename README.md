@@ -512,6 +512,9 @@ Practice describing security concepts in the context of an attack. These categor
 
 ## Detection
 
+### Rules
+
+* [https://github.com/SigmaHQ/sigma/tree/master/rules](https://github.com/SigmaHQ/sigma/tree/master/rules)
 * IDS
   * Intrusion Detection System (signature based (eg. snort) or behaviour based).
   * Snort/Suricata/YARA rule writing
