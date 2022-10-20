@@ -4,11 +4,33 @@ description: A quick reference of relevant security topics for technical intervi
 
 # Security Interview Cheatsheet
 
+## Incident Response
+
+### Tools
+
+* [https://github.com/meirwah/awesome-incident-response](https://github.com/meirwah/awesome-incident-response)
+
+### Framework
+
+<figure><img src="https://www.cynet.com/wp-content/uploads/2019/08/nist-incident-response-process-1.png" alt=""><figcaption><p>SANS</p></figcaption></figure>
+
+## Logs
+
+### Log sources
+
+* Firewall
+* Proxy
+* EDR
+* DNS
+* IDPS
+* Threat Intel
+* Cloud
+
 ## Networking
 
 ### OSI Model
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://www.cloudflare.com/img/learning/ddos/what-is-a-ddos-attack/osi-model-7-layers.svg" alt=""><figcaption></figcaption></figure>
 
 ### Firewalls
 
@@ -20,7 +42,12 @@ description: A quick reference of relevant security topics for technical intervi
 
 ### Ports & Protocols
 
+<figure><img src="https://ipwithease.com/wp-content/uploads/2020/06/COMMON-TCP-IP-WELL-KNOWN-PORT-NUMBERS-TABLE.jpg" alt=""><figcaption></figcaption></figure>
+
 * DNS (53)
+
+<figure><img src="https://www.cloudflare.com/img/learning/ddos/glossary/domain-name-system-dns/ddos-dns-request.png" alt=""><figcaption></figcaption></figure>
+
 * Requests to DNS are usually UDP, unless the server gives a redirect notice asking for a TCP connection. Look up in cache happens first. DNS exfiltration. Using raw IP addresses means no DNS logs, but there are HTTP logs. DNS sinkholes.
 * In a reverse DNS lookup, PTR might contain- 2.152.80.208.in-addr.arpa, which will map to 208.80.152.2. DNS lookups start at the end of the string and work backwards, which is why the IP address is backwards in PTR.
 * DNS exfiltration
@@ -107,7 +134,11 @@ description: A quick reference of relevant security topics for technical intervi
 
 ### HTTP&#x20;
 
-* HTTP Header
+* HTTP Request Header
+
+<figure><img src="https://www.cloudflare.com/img/learning/ddos/glossary/hypertext-transfer-protocol-http/http-request-headers.png" alt=""><figcaption></figcaption></figure>
+
+*
 * \| Verb | Path | HTTP version |
 * Domain
 * Accept
@@ -207,7 +238,11 @@ description: A quick reference of relevant security topics for technical intervi
   * Trusting the host but not the network.
 * Log4j vuln.
 
-## OS Implementation and Systems
+## OS&#x20;
+
+### Linux
+
+<figure><img src="http://www.blackmoreops.com/wp-content/uploads/2015/02/Linux-file-system-hierarchy-Linux-file-structure-optimized.jpg" alt=""><figcaption></figcaption></figure>
 
 * Privilege escalation techniques, and prevention.
 * Buffer Overflows.
