@@ -30,6 +30,12 @@ description: A quick reference of relevant security topics for technical intervi
     5. This injected payload triggers a second stage, and allows an attacker to execute arbitrary code.
   * Detection:
     * Web server logs - [link](https://github.com/SigmaHQ/sigma/blob/master/rules/web/web\_cve\_2021\_44228\_log4j\_fields.yml)
+* SolarWinds (Sunburst)
+  * Timeline - [link ](https://krebsonsecurity.com/2021/01/solarwinds-what-hit-us-could-hit-others/)
+* Lapsas$
+  * Attacks - [link](https://en.wikipedia.org/wiki/Lapsus$)
+* Colonial Pipeline
+  * Timeline - [link](https://www.nguard.com/colonial-pipeline-timeline-of-events/)
 
 ## Logs
 
@@ -155,7 +161,6 @@ description: A quick reference of relevant security topics for technical intervi
 
 <figure><img src="https://www.cloudflare.com/img/learning/ddos/glossary/hypertext-transfer-protocol-http/http-request-headers.png" alt=""><figcaption></figcaption></figure>
 
-*
 * \| Verb | Path | HTTP version |
 * Domain
 * Accept
@@ -189,7 +194,7 @@ description: A quick reference of relevant security topics for technical intervi
 
 ## Web Application
 
-#### OWASP Top 10
+### OWASP Top 10
 
 1. [**A01:2021-Broken Access Control**](https://owasp.org/Top10/A01\_2021-Broken\_Access\_Control/) moves up from the fifth position; 94% of applications were tested for some form of broken access control. The 34 Common Weakness Enumerations (CWEs) mapped to Broken Access Control had more occurrences in applications than any other category.
 2. [**A02:2021-Cryptographic Failures**](https://owasp.org/Top10/A02\_2021-Cryptographic\_Failures/) shifts up one position to #2, previously known as Sensitive Data Exposure, which was broad symptom rather than a root cause. The renewed focus here is on failures related to cryptography which often leads to sensitive data exposure or system compromise.
@@ -229,9 +234,9 @@ description: A quick reference of relevant security topics for technical intervi
 
 #### Shell Cheatsheet
 
-<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 #### Key points
 
@@ -242,9 +247,9 @@ description: A quick reference of relevant security topics for technical intervi
 
 #### Shell Cheatsheet
 
-<figure><img src=".gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 Key Points
 
@@ -417,7 +422,7 @@ Key Points
 
 ## Attack Structure
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 * Reconnaissance
   * OSINT, Google dorking, Shodan.
