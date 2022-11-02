@@ -37,6 +37,10 @@ description: A quick reference of relevant security topics for technical intervi
 * Colonial Pipeline
   * Timeline - [link](https://www.nguard.com/colonial-pipeline-timeline-of-events/)
 
+### Threat Hunting
+
+* What is threat hunting - [link](https://www.trellix.com/en-us/security-awareness/operations/what-is-cyber-threat-hunting.html)
+
 ## Logs
 
 ### Log sources
