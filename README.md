@@ -251,7 +251,7 @@ description: A quick reference of relevant security topics for technical intervi
 
 #### Shell Cheatsheet
 
-<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
@@ -426,7 +426,7 @@ Key Points
 
 ## Attack Structure
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 * Reconnaissance
   * OSINT, Google dorking, Shodan.
@@ -499,6 +499,8 @@ Key Points
 * [Excellent talk](https://www.youtube.com/watch?v=vbwb6zqjZ7o) on "Defense Against the Dark Arts" by Lilly Ryan (contains _many_ Harry Potter spoilers)
 
 ## Detection
+
+<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 ### Rules
 
